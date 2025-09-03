@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - UPSTAGE_API_KEY=${UPSTAGE_API_KEY}
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URL=sqlite:///./app.db
+    volumes:
+      - ./uploads:/app/uploads
+      - ./app.db:/app/app.db
+    restart: unless-stopped
